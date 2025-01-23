@@ -23,16 +23,6 @@ warn() {
   printf "%s[*] %s%s\n" "$(tput setaf 3)" "$1" "$reset_color"
 }
 
-install_xcode() {
-  if xcode-select -p >/dev/null; then
-    warn "xCode Command Line Tools already installed"
-  else
-    info "Installing xCode Command Line Tools..."
-    xcode-select --install
-    sudo xcodebuild -license accept
-  fi
-}
-
 install_homebrew() {
   export HOMEBREW_CASK_OPTS="--appdir=/Applications"
   if hash brew &>/dev/null; then
@@ -51,7 +41,6 @@ info "####### dotfiles #######"
 read -p "Press enter to start:"
 info "Bootstraping..."
 
-# install_xcode
 install_homebrew
 
 info "Installing Git"
